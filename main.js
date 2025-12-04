@@ -140,7 +140,7 @@
   });
 
   /**
-   * Skills animation
+   * Skills badges entrance animation (staggered)
    */
   let skilsContent = select('.skills-content');
   if (skilsContent) {
@@ -148,9 +148,10 @@
       element: skilsContent,
       offset: '80%',
       handler: function(direction) {
-        let progress = select('.progress .progress-bar', true);
-        progress.forEach((el) => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%'
+        let badges = select('.badge-skill', true) || [];
+        badges.forEach((el, i) => {
+          el.style.transitionDelay = (i * 65) + 'ms';
+          el.classList.add('visible');
         });
       }
     })
